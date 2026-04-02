@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Logo from "../components/Logo";
-import { TextField } from "../components/TextField";
-export default function Home() {
-  const router = useRouter();
+
+import Logo from "./Logo";
+import { TextField } from "./TextField";
+export default function Home({ onBack, onNext }) {
   const [email, setEmail] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [password, setPassword] = useState("");
@@ -16,17 +15,18 @@ export default function Home() {
       return "Please provide a valid email address";
   };
   const isPhoneNumberValid = () => {
-    if (phonenumber === "") return "";
-    if (!/^\d{10,15}$/.test(phonenumber))
+    if (phonenumber === "") return "Phone number cannot be empty";
+    if (!/^\d{1,8}$/.test(phonenumber))
       return "Please enter a valid phone number";
   };
   const isPasswordValid = () => {
-    if (password === "") return "";
+    if (password === "") return "Password cannot be empty";
     if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
       return "Password must include letters and numbers.";
   };
   const isConfirmPasswordValid = () => {
-    if (confirmPassword !== password) return "do not match";
+    if (confirmPassword === "") return "Confirm password cannot be empty";
+    if (confirmPassword !== password) return "Do not match";
     if (confirmPassword === password) return "";
   };
   return (
@@ -61,6 +61,7 @@ export default function Home() {
             required={true}
             label="Password"
             placeholder="Password"
+            type="password"
           />
           <TextField
             value={confirmPassword}
@@ -69,23 +70,33 @@ export default function Home() {
             required={true}
             label="Confirm password"
             placeholder="Confirm password"
+            type="password"
           />
-          <button
-            onClick={() => {
-              setSubmitted(true);
-              if (
-                !isEmailValid() &&
-                !isPhoneNumberValid() &&
-                !isPasswordValid() &&
-                !isConfirmPasswordValid()
-              ) {
-                router.push("/step3");
-              }
-            }}
-            className="w-full bg-black text-white py-3 rounded-lg font-semibold mt-4"
-          >
-            Continue 2/3
-          </button>
+          <div className="flex justify-between gap-3">
+            <button
+              onClick={onBack}
+              className="w-32 bg-white text-black border py-3 rounded-lg font-semibold mt-4"
+            >
+              Back
+            </button>
+            <button
+              className="w-full bg-black text-white py-3 rounded-lg font-semibold mt-4"
+              onClick={() => {
+                setSubmitted(true);
+                if (
+                  isEmailValid() ||
+                  isPhoneNumberValid() ||
+                  isPasswordValid() ||
+                  isConfirmPasswordValid()
+                )
+                  return;
+
+                onNext();
+              }}
+            >
+              Continue 2/3
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ export const TextField = (props) => {
     value,
     onChange,
     error,
-    type = "text",
+    type = "text,",
     required = false,
   } = props;
   return (
