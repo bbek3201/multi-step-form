@@ -3,60 +3,56 @@ import { useState } from "react";
 
 import Logo from "./Logo";
 import { TextField } from "./TextField";
-export default function Home({ onBack, onNext }) {
+export default function Home({ onBack, onNext, form, setForm }) {
   const [email, setEmail] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
-  const [password, setPassword] = useState("");
+
   const [submitted, setSubmitted] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const isEmailValid = () => {
-    if (email === "") return "Please provide a valid email address...";
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))
+    if (form.email === "") return "Please provide a valid email address...";
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(form.email))
       return "Please provide a valid email address";
   };
   const isPhoneNumberValid = () => {
-    if (phonenumber === "") return "Phone number cannot be empty";
-    if (!/^\d{1,8}$/.test(phonenumber))
+    if (form.phonenumber === "") return "Phone number cannot be empty";
+    if (!/^\d{1,8}$/.test(form.phonenumber))
       return "Please enter a valid phone number";
   };
   const isPasswordValid = () => {
-    if (password === "") return "Password cannot be empty";
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
+    if (form.password === "") return "Password cannot be empty";
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password))
       return "Password must include letters and numbers.";
   };
   const isConfirmPasswordValid = () => {
-    if (confirmPassword === "") return "Confirm password cannot be empty";
-    if (confirmPassword !== password) return "Do not match";
-    if (confirmPassword === password) return "";
+    if (form.confirmPassword === "") return "Confirm password cannot be empty";
+    if (form.confirmPassword !== form.password) return "Do not match";
+    return "";
   };
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#f4f4f4]">
       <div className="w-120 min-h-[655px] bg-white rounded-lg p-8 shadow-xl">
         <div className="space-y-2">
           <Logo />
-          <h1 className="font-semibold text-2xl">Join Us! 😊</h1>
-          <p className="text-lg text-[#8E8E8E]">
-            Please provide all current information accurately.
-          </p>
+
           <TextField
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
             error={submitted ? isEmailValid() : ""}
             required={true}
             label="Email"
             placeholder="Email"
           />
           <TextField
-            value={phonenumber}
-            onChange={(e) => setPhonenumber(e.target.value)}
+            value={form.phonenumber}
+            onChange={(e) => setForm({ ...form, phonenumber: e.target.value })}
             error={submitted ? isPhoneNumberValid() : ""}
             required={true}
             label="Phone number"
             placeholder="Phone number"
           />
           <TextField
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
             error={submitted ? isPasswordValid() : ""}
             required={true}
             label="Password"
@@ -64,8 +60,10 @@ export default function Home({ onBack, onNext }) {
             type="password"
           />
           <TextField
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={form.confirmPassword}
+            onChange={(e) =>
+              setForm({ ...form, confirmPassword: e.target.value })
+            }
             error={submitted ? isConfirmPasswordValid() : ""}
             required={true}
             label="Confirm password"

@@ -15,7 +15,7 @@ export const TextField = (props) => {
       </label>
       <input
         className={`w-full h-11 rounded-lg border  p-3 ${error ? "border-[#E14942]" : "border-[#CBD5E1]"}`}
-        value={value}
+        value={value ?? ""}
         onChange={onChange}
         placeholder={placeholder}
         type={type}
