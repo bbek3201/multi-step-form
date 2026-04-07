@@ -4,7 +4,7 @@ import successAnimation from "./Congratulations.json";
 export const Last = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#f4f4f4]">
-      <div className="w-120 min-h-163.75 bg-white rounded-lg p-8 shadow-xl">
+      <div className="w-120 min-h-163.75 bg-white rounded-lg p-8 shadow-xl relative">
         <div className="space-y-2">
           <svg
             width="60"
@@ -40,7 +40,12 @@ export const Last = () => {
           <Lottie
             animationData={successAnimation}
             loop={false}
-            className="w-full h-full pt-20"
+            className="w-[415px] h-[553px] flex items-center justify-center overflow-hidden absolute"
+          />
+          <img
+            className="w-[415 px] h-[500px] object-cover"
+            src="https://www.iamfy.co/cdn/shop/files/m_2Fx1000_2F7ad4a27c-7610-4329-875a-2eaf2e2e52ec.jpg?v=1760708119"
+            alt=""
           />
         </div>
       </div>

@@ -25,7 +25,11 @@ export default function Home({
   };
   const isPasswordValid = () => {
     if (form.password === "") return "Password cannot be empty";
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password))
+    if (
+      !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(
+        form.password,
+      )
+    )
       return "Password must include letters and numbers.";
   };
   const isConfirmPasswordValid = (value = form.confirmpassword) => {

@@ -33,7 +33,7 @@ export default function Home() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [fullname, setFullname] = useState("");
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#f4f4f4]">
