@@ -36,7 +36,7 @@ export const InputComp = ({ onNext, form, setForm, errors, setErrors }) => {
           error={submitted ? isFirstNameValid() : ""}
           required={true}
           label="First name"
-          placeholder="Placeholder"
+          placeholder="Jhon..."
         />
         <TextField
           value={form.lastname}
@@ -47,7 +47,7 @@ export const InputComp = ({ onNext, form, setForm, errors, setErrors }) => {
           error={submitted ? isLastNameValid() : ""}
           required={true}
           label="Last name"
-          placeholder="Placeholder"
+          placeholder="Smith..."
         />
         <TextField
           value={form.fullname}
@@ -58,7 +58,7 @@ export const InputComp = ({ onNext, form, setForm, errors, setErrors }) => {
           error={submitted ? isFullNameValid() : ""}
           required={true}
           label="Full name"
-          placeholder="Placeholder"
+          placeholder="Jhon Smith..."
         />
       </div>
       <div className="h-full">

@@ -52,7 +52,7 @@ export default function Home({
               error={submitted ? isEmailValid() : ""}
               required={true}
               label="Email"
-              placeholder="Email"
+              placeholder="jhon.smith@gmail.com..."
             />
             <TextField
               value={form.phonenumber}
@@ -66,7 +66,7 @@ export default function Home({
               error={submitted ? isPhoneNumberValid() : ""}
               required={true}
               label="Phone number"
-              placeholder="Phone number"
+              placeholder="12345678..."
             />
             <TextField
               value={form.password}
