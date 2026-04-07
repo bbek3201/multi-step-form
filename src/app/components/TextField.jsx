@@ -8,12 +8,14 @@ export const TextField = (props) => {
     type = "text,",
     required = false,
   } = props;
+  const id = label?.toLowerCase().split(" ").join("-");
   return (
     <div className="space-y-2">
-      <label className="font-semibold text-sm">
+      <label htmlFor={id} className="font-semibold text-sm">
         {label} {required && <span className="text-[#E14942]">*</span>}
       </label>
       <input
+        id={id}
         className={`w-full h-11 rounded-lg border  p-3 ${error ? "border-[#E14942]" : "border-[#CBD5E1]"}`}
         value={value ?? ""}
         onChange={onChange}

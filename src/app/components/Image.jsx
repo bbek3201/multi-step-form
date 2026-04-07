@@ -20,7 +20,7 @@ export const Image = ({
 
   return (
     <div className="">
-      <label className="font-semibold text-sm">
+      <label htmlFor="imageInput" className="font-semibold text-sm">
         {label} {required && <span className="text-[#E14942]">*</span>}
       </label>
       <>

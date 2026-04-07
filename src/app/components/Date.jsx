@@ -10,10 +10,11 @@ export const Date = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <label className="font-semibold text-sm">
+      <label htmlFor="date" className="font-semibold text-sm">
         {label} {required && <span className="text-[#E14942]">*</span>}
       </label>
       <input
+        id="date"
         value={value}
         placeholder={placeholder}
         onChange={onChange}

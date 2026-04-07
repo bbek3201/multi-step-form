@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./components/Logo";
 
 import Step2 from "./components/Step2";
@@ -8,17 +8,7 @@ import { Last } from "./components/Last";
 import { InputComp } from "./components/InputComp";
 
 export default function Home() {
-  const [form, setForm] = useState({
-    firstname: "",
-    lastname: "",
-    fullname: "",
-    email: "",
-    phonenumber: "",
-    password: "",
-    confirmpassword: "",
-    birthday: "",
-    image: "",
-  });
+  const [form, setForm] = useState(null);
   const [errors, setErrors] = useState({
     firstname: "",
     lastname: "",
@@ -30,11 +20,34 @@ export default function Home() {
     date: "",
     image: "",
   });
+  useEffect(() => {
+    if (form !== null) {
+      localStorage.setItem("form", JSON.stringify(form));
+    } else {
+      const storedForm = JSON.parse(localStorage.getItem("form"));
+      if (storedForm) {
+        setForm(storedForm);
+      } else {
+        setForm({
+          firstname: "",
+          lastname: "",
+          fullname: "",
+          email: "",
+          phonenumber: "",
+          password: "",
+          confirmpassword: "",
+          date: "",
+          image: "",
+        });
+      }
+    }
+  }, [form]);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [fullname, setFullname] = useState("");
   const [step, setStep] = useState(0);
-
+  const st = step[step];
+  if (!form) return null;
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#f4f4f4]">
       {step === 0 && (
