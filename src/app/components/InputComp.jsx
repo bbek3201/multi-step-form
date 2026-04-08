@@ -16,14 +16,14 @@ export const InputComp = ({ onNext, form, setForm, errors, setErrors }) => {
   };
   const isFullNameValid = () => {
     if (form.fullname === "") return "Full name cannot be empty...";
-    if (!/^[A-Za-z- ]+$/.test(form.fullname))
-      return "This username is already taken. Please choose another one.";
+    if (!/^[A-Za-z0-9.]+$/.test(form.fullname))
+      return "Username cannot contain special characters.";
   };
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="flex flex-col justify-between h-full min-h-[400px]">
-      <div>
+    <div className="flex flex-col justify-between h-full min-h-100">
+      <div className="flex flex-col justify-between h-full min-100 gap-3">
         <TextField
           value={form.firstname}
           onChange={(e) => {
@@ -57,7 +57,7 @@ export const InputComp = ({ onNext, form, setForm, errors, setErrors }) => {
           }}
           error={submitted ? isFullNameValid() : ""}
           required={true}
-          label="Full name"
+          label="User name"
           placeholder="Jhon Smith..."
         />
       </div>

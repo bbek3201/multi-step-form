@@ -31,7 +31,7 @@ export default function Home({
         <div className="space-y-2">
           <Logo />
         </div>
-        <div className="flex flex-col justify-between h-full min-h-[400px]">
+        <div className="flex flex-col justify-between h-full min-h-100">
           <div className="flex flex-col gap-3 pt-5">
             <Date
               type="date"
@@ -57,9 +57,7 @@ export default function Home({
               label="Profile image"
               required={true}
               initialImage={form.image || null}
-              error={
-                submitted ? (profileImage ? "" : "please select image") : ""
-              }
+              error={submitted && (profileImage ? "please select image" : "")}
               onChange={({ name, url }) => {
                 setProfileImage(name);
                 setErrors({

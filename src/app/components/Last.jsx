@@ -40,10 +40,10 @@ export const Last = () => {
           <Lottie
             animationData={successAnimation}
             loop={false}
-            className="w-[415px] h-[553px] flex items-center justify-center overflow-hidden absolute"
+            className="w-103.75 h-138.25 flex items-center justify-center overflow-hidden absolute"
           />
           <img
-            className="w-[450px] h-[500px] object-cover"
+            className="w-112.5 h-125 object-cover rounded-xl"
             src="https://www.iamfy.co/cdn/shop/files/m_2Fx1000_2F7ad4a27c-7610-4329-875a-2eaf2e2e52ec.jpg?v=1760708119"
             alt=""
           />

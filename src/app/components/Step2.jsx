@@ -20,7 +20,7 @@ export default function Home({
   };
   const isPhoneNumberValid = () => {
     if (form.phonenumber === "") return "Phone number cannot be empty";
-    if (!/^\d{1,8}$/.test(form.phonenumber))
+    if (!/^[0-9]{8}$/.test(form.phonenumber))
       return "Please enter a valid phone number";
   };
   const isPasswordValid = () => {
@@ -42,7 +42,7 @@ export default function Home({
       <div className="w-120 min-h-163.75 bg-white rounded-lg p-8 shadow-xl">
         <div className="space-y-2">
           <Logo />
-          <div className="flex flex-col justify-between h-full min-h-[400px]">
+          <div className="flex flex-col justify-between h-full min-h-100">
             <TextField
               value={form.email}
               onChange={(e) => {
